@@ -1,16 +1,16 @@
 import React from 'react'
 import classnames from '../utilities/classnames'
-import * as T from '../types/toast'
+import type { Props } from '../types/toast'
 import s from '../styles/toast.css'
 
-class Toast extends React.PureComponent<T.Props> {
+class Toast extends React.PureComponent<Props & { id: string }> {
   action_ref = React.createRef<HTMLButtonElement>()
   previous_focus: HTMLElement | null
 
   handle_action_click = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const { onActionClick: on_action_click } = this.props
+    const { on_action_click } = this.props
 
-    if(on_action_click) on_action_click(e)
+    if(on_action_click) on_action_click(this.props.id, e)
   }
 
   handle_action_blur = () => {
@@ -46,12 +46,12 @@ class Toast extends React.PureComponent<T.Props> {
   }
 
   render() {
-    const { text, actionText: action_text, ariaLabel, variant } = this.props
+    const { text, action_text, aria_label, variant } = this.props
     const root_classnames = classnames(s['root'], variant && s[`root--${variant}`])
 
     return (
       <div className={root_classnames}>
-        <span className={s['alert']} role="alert" aria-label={ariaLabel || text} />
+        <span className={s['alert']} role="alert" aria-label={aria_label || text} />
         <span className={s['text']}>{ text }</span>
         {action_text && (
           <button

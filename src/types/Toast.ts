@@ -1,9 +1,9 @@
-import React from 'react'
+import type { MouseEvent } from 'react'
 
 export type Props = {
   text: string,
-  actionText?: string,
-  ariaLabel?: string,
-  onActionClick?: (event: React.MouseEvent<HTMLButtonElement>) => void,
-  variant?: 'error'
+  aria_label?: string,
+  variant?: string
+  action_text?: string,
+  on_action_click?: (id: string, event: MouseEvent<HTMLButtonElement>) => any,
 }

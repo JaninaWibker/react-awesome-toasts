@@ -2,25 +2,21 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { ToastProvider, ToastConsumer, withToast } from '../src'
 import Toast from '../src/Toast'
-import * as T from '../src/types/toast-context'
+import type { ToastContext } from '../src/types/toast-context'
 
-interface Props {
-  toast: T.ToastContext
-}
-
-const toastProps = {
+const toast_props = {
   text: 'Message deleted',
-  ariaLabel: 'Message deleted, click to undo',
-  actionText: 'Undo',
+  aria_label: 'Message deleted, click to undo',
+  action_text: 'Undo',
 }
 
-class TestButton extends React.Component<Props> {
-  handleClick = () => {
-    this.props.toast.show({ ...toastProps, onActionClick: this.props.toast.hide })
+class TestButton extends React.Component<{ dispatch: ToastContext }> {
+  handle_click = () => {
+    this.props.dispatch({ type: 'show', payload: toast_props })
   }
 
   render() {
-    return <button onClick={this.handleClick}>Show toast</button>
+    return <button onClick={this.handle_click}>Show toast</button>
   }
 }
 
@@ -37,13 +33,11 @@ storiesOf('Toast', module)
   .add('Using consumer', () => (
     <ToastProvider component={Toast}>
       <ToastConsumer>
-        {
-          ({ show, hide }) => (
-            <button onClick={() => show({ ...toastProps, onActionClick: hide })}>
-              Show toast
-            </button>
-          )
-        }
+        {dispatch => (
+          <button onClick={() => dispatch({ type: 'show', payload: { ...toast_props, on_action_click: id => dispatch({ type: 'hide', payload: id }) } })}>
+            Show toast
+          </button>
+        )}
       </ToastConsumer>
     </ToastProvider>
   ))
@@ -60,26 +54,22 @@ storiesOf('Toast', module)
   .add('Error toast', () => (
     <ToastProvider component={Toast}>
       <ToastConsumer>
-        {
-          ({ show, hide }) => (
-            <button onClick={() => show({ ...toastProps, onActionClick: hide, variant: 'error' })}>
-              Show toast
-            </button>
-          )
-        }
+        {dispatch => (
+          <button onClick={() => dispatch({ type: 'show', payload: {...toast_props, on_action_click: id => dispatch({ type: 'hide', payload: id }), variant: 'error' } })}>
+            Show toast
+          </button>
+        )}
       </ToastConsumer>
     </ToastProvider>
   ))
   .add('Custom component', () => (
     <ToastProvider component={CustomToast} position="top-center">
       <ToastConsumer>
-        {
-          ({ show, hide }) => (
-            <button onClick={() => show({ ...toastProps, onActionClick: hide, variant: 'error' })}>
-              Show toast
-            </button>
-          )
-        }
+        {dispatch => (
+          <button onClick={() => dispatch({ type: 'show', payload: {...toast_props, on_action_click: id => dispatch({ type: 'hide', payload: id }), variant: 'error' } })}>
+            Show toast
+          </button>
+        )}
       </ToastConsumer>
     </ToastProvider>
   ))

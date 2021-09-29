@@ -1,84 +1,90 @@
 import React from 'react'
 import id from '../utilities/id'
 import ToastContainer from './toast-container'
-import * as T from '../types/toast-context'
+import type { ToastPosition, GenericToast, Toast } from '../types/toast-context'
+import ToastComponent from '../Toast'
+
+type ToastProviderProps<T> = {
+  timeout?: number,
+  position?: ToastPosition,
+  children: React.ReactNode,
+  component?: React.ComponentType<T & { id: string }>
+}
 
 const { Consumer, Provider } = React.createContext({})
 
-export class ToastProvider extends React.PureComponent<T.ToastProviderProps, T.ToastProviderState> {
-  static queue: T.ToastProviderState['toasts'] = []
-  static defaultProps = {
-    timeout: 4500,
-    position: 'bottom-left',
-  }
+type HideAction = { type: 'hide', payload: string }
+type ShowAction<T> = { type: 'show', payload: T }
 
-  ref = React.createRef<ToastContainer>()
+type Action<T> = HideAction | ShowAction<T>
 
-  state: T.ToastProviderState = {
-    toasts: [],
-  }
+type State<T> = { queue: GenericToast<T>[], toasts: GenericToast<T>[] }
 
-  add_toast_from_queue = () => {
-    const { toasts } = this.state
+type Reducer<T> = (state: State<T>, action: Action<T>) => State<T>
 
-    if(!ToastProvider.queue.length) return
+const reducer = <T extends any>(state: State<T>, action: Action<T>): State<T> => {
+  switch(action.type) {
+    case 'show': {
+      const new_toast = { id: id(), props: action.payload } // TODO: how is id generatino done? is using random here a good idea?
 
-    const toast = ToastProvider.queue.shift() as T.ToastProviderQueueItem
+      if(state.toasts.length === 0) {
+        return { queue: state.queue, toasts: [...state.toasts, new_toast] }
+      } else {
+        return { queue: [...state.queue, new_toast], toasts: state.toasts }
+      }
 
-    this.setState({ toasts: [...toasts, toast] })
-  }
+    }
+    case 'hide': {
 
-  show = (toast: T.ReactProps) => {
-    const { toasts } = this.state
+      const found_in_toasts = state.toasts.find(toast => toast.id === action.payload)
 
-    ToastProvider.queue.push({ props: toast, id: id() })
-    if(!toasts.length) this.add_toast_from_queue()
-  }
-
-  hide = () => {
-    const instance = this.ref.current
-
-    if(!instance) return
-
-    instance.hide()
-  }
-
-  handle_hide = () => {
-    this.add_toast_from_queue()
-  }
-
-  handle_toast_remove = () => {
-    const { toasts } = this.state
-
-    this.setState({ toasts: toasts.slice(1) })
-  }
-
-  render() {
-    const { children, component, timeout, position } = this.props
-    const { toasts } = this.state
-
-    return (
-      <Provider value={{ show: this.show, hide: this.hide }}>
-        { children }
-
-        {
-          toasts.map((toast, index) => (
-            <ToastContainer
-              toastProps={toast.props}
-              ref={index === toasts.length - 1 ? this.ref : undefined}
-              key={toast.id}
-              onHide={this.handle_hide}
-              onRemove={this.handle_toast_remove}
-              component={component}
-              timeout={timeout}
-              position={position}
-            />
-          ))
+      if(found_in_toasts) {
+        const new_toast = state.queue.pop()
+        const filtered_toasts = state.toasts.filter(toast => toast.id !== action.payload)
+        return {
+          queue: state.queue,
+          toasts: new_toast !== undefined
+            ? [...filtered_toasts, new_toast]
+            : filtered_toasts
         }
-      </Provider>
-    )
+      } else {
+        return {
+          queue: state.queue.filter(toast => toast.id !== action.payload),
+          toasts: state.toasts
+        }
+      }
+    }
   }
 }
+
+const ToastProvider = <T extends any = Toast['props']>(unmerged_props: ToastProviderProps<T>) => {
+
+  const props = Object.assign({}, {
+    timeout: 4500,
+    position: 'bottom-left',
+    component: ToastComponent
+  }, unmerged_props)
+
+  const [state, dispatch] = React.useReducer(reducer as Reducer<T>, { queue: [], toasts: [] } as State<T>, () => ({ queue: [], toasts: [] } as State<T>))
+
+  return (
+    <Provider value={dispatch}>
+      {props.children}
+
+      {state.toasts.map(toast => (
+        <ToastContainer
+          component={props.component}
+          toast={toast}
+          key={toast.id}
+          dispatch={dispatch}
+          timeout={props.timeout}
+          position={props.position}
+        />
+      ))}
+    </Provider>
+  )
+}
+
 
 export const ContextConsumer = Consumer
 export default ToastProvider
