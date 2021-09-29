@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { ContextConsumer } from './ToastProvider'
-import * as T from './ToastContext.types'
+import { ContextConsumer } from './toast-provider'
+import * as T from '../types/toast-context'
 
 class ToastConsumer extends React.PureComponent<T.ToastConsumerProps> {
   render() {

@@ -1,6 +1,6 @@
 import * as React from 'react'
-import ToastConsumer from './ToastConsumer'
-import * as T from './ToastContext.types'
+import ToastConsumer from './toast-consumer'
+import * as T from '../types/toast-context'
 
 const withToast: T.WithToast = (Component) => (props) => (
   <ToastConsumer>

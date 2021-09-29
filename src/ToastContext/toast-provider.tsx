@@ -1,7 +1,7 @@
 import React from 'react'
 import id from '../utilities/id'
-import ToastContainer from './ToastContainer'
-import * as T from './ToastContext.types'
+import ToastContainer from './toast-container'
+import * as T from '../types/toast-context'
 
 const { Consumer, Provider } = React.createContext({})
 
@@ -18,10 +18,10 @@ export class ToastProvider extends React.PureComponent<T.ToastProviderProps, T.T
     toasts: [],
   }
 
-  addToastFromQueue = () => {
+  add_toast_from_queue = () => {
     const { toasts } = this.state
 
-    if (!ToastProvider.queue.length) return
+    if(!ToastProvider.queue.length) return
 
     const toast = ToastProvider.queue.shift() as T.ToastProviderQueueItem
 
@@ -32,22 +32,22 @@ export class ToastProvider extends React.PureComponent<T.ToastProviderProps, T.T
     const { toasts } = this.state
 
     ToastProvider.queue.push({ props: toast, id: id() })
-    if (!toasts.length) this.addToastFromQueue()
+    if(!toasts.length) this.add_toast_from_queue()
   }
 
   hide = () => {
     const instance = this.ref.current
 
-    if (!instance) return
+    if(!instance) return
 
     instance.hide()
   }
 
-  handleHide = () => {
-    this.addToastFromQueue()
+  handle_hide = () => {
+    this.add_toast_from_queue()
   }
 
-  handleToastRemove = () => {
+  handle_toast_remove = () => {
     const { toasts } = this.state
 
     this.setState({ toasts: toasts.slice(1) })
@@ -67,8 +67,8 @@ export class ToastProvider extends React.PureComponent<T.ToastProviderProps, T.T
               toastProps={toast.props}
               ref={index === toasts.length - 1 ? this.ref : undefined}
               key={toast.id}
-              onHide={this.handleHide}
-              onRemove={this.handleToastRemove}
+              onHide={this.handle_hide}
+              onRemove={this.handle_toast_remove}
               component={component}
               timeout={timeout}
               position={position}

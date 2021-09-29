@@ -1,70 +1,68 @@
 import React from 'react'
 import classnames from '../utilities/classnames'
-import * as T from './Toast.types'
-import s from './Toast.css'
+import * as T from '../types/toast'
+import s from '../styles/toast.css'
 
 class Toast extends React.PureComponent<T.Props> {
-  actionRef = React.createRef<HTMLButtonElement>()
-  previousFocus: HTMLElement | null
+  action_ref = React.createRef<HTMLButtonElement>()
+  previous_focus: HTMLElement | null
 
-  handleActionClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const { onActionClick } = this.props
+  handle_action_click = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const { onActionClick: on_action_click } = this.props
 
-    if (onActionClick) onActionClick(e)
+    if(on_action_click) on_action_click(e)
   }
 
-  handleActionBlur = () => {
-    this.restoreFocus()
+  handle_action_blur = () => {
+    this.restore_focus()
   }
 
-  restoreFocus = () => {
-    if (document.activeElement !== this.actionRef.current) return
+  restore_focus = () => {
+    if(document.activeElement !== this.action_ref.current) return
 
-    if (this.previousFocus && this.previousFocus.focus) {
-      const scrollPosition = window.pageYOffset
-      this.previousFocus.focus()
-      window.scrollTo({ top: scrollPosition })
+    if(this.previous_focus && this.previous_focus.focus) {
+      const scroll_position = window.pageYOffset
+      this.previous_focus.focus()
+      window.scrollTo({ top: scroll_position })
     }
 
-    this.previousFocus = null
+    this.previous_focus = null
   }
 
   componentDidMount() {
-    const elButton = this.actionRef.current
+    const button = this.action_ref.current
 
-    if (!elButton) return
+    if(!button) return
 
-    if (document.activeElement instanceof HTMLElement) {
-      this.previousFocus = document.activeElement
+    if(document.activeElement instanceof HTMLElement) {
+      this.previous_focus = document.activeElement
     }
 
-    elButton.focus()
+    button.focus()
   }
 
   componentWillUnmount() {
-    this.restoreFocus()
+    this.restore_focus()
   }
 
   render() {
-    const { text, actionText, ariaLabel, variant } = this.props
-    const rootClassNames = classnames(s['root'], variant && s[`root--${variant}`])
+    const { text, actionText: action_text, ariaLabel, variant } = this.props
+    const root_classnames = classnames(s['root'], variant && s[`root--${variant}`])
 
     return (
-      <div className={rootClassNames}>
+      <div className={root_classnames}>
         <span className={s['alert']} role="alert" aria-label={ariaLabel || text} />
         <span className={s['text']}>{ text }</span>
-        {
-          actionText && (
-            <button
-              onClick={this.handleActionClick}
-              onBlur={this.handleActionBlur}
-              className={s['action']}
-              ref={this.actionRef}
-            >
-              { actionText }
-            </button>
-          )
-        }
+        {action_text && (
+          <button
+            onClick={this.handle_action_click}
+            onBlur={this.handle_action_blur}
+            className={s['action']}
+            ref={this.action_ref}
+          >
+            {action_text}
+          </button>
+        )}
       </div>
     )
   }

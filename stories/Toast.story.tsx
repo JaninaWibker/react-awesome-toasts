@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { ToastProvider, ToastConsumer, withToast } from '../src'
 import Toast from '../src/Toast'
-import * as T from '../src/ToastContext/ToastContext.types'
+import * as T from '../src/types/toast-context'
 
 interface Props {
   toast: T.ToastContext

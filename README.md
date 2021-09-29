@@ -2,7 +2,7 @@
 
 Easily customizable React notification system that manages its queue for you. 
 
-https://bananabobby.github.io/react-awesome-toasts/
+https://blvdmitry.github.io/react-awesome-toasts/
 
 - 🎙 Screen reader accessibility
 - 🔧 Server side rendering support

@@ -1,3 +1,4 @@
 *.dist.js
 prism.js
 webpack.config.js
+dist

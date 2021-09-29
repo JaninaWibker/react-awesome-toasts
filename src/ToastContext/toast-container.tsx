@@ -1,9 +1,9 @@
 import React from 'react'
 import Toast from '../Toast'
 import classnames from '../utilities/classnames'
-import nextFrame from '../utilities/next_frame'
-import * as T from './ToastContext.types'
-import s from './ToastContainer.css'
+import next_frame from '../utilities/next-frame'
+import * as T from '../types/toast-context'
+import s from '../styles/toast-container.css'
 
 class ToastContainer extends React.PureComponent<T.ToastContainerProps, T.ToastContainerState> {
   static defaultProps = {
@@ -16,37 +16,37 @@ class ToastContainer extends React.PureComponent<T.ToastContainerProps, T.ToastC
     status: 'entering',
   }
 
-  startTimer = () => {
+  start_timer = () => {
     this.timer = setTimeout(this.hide, this.props.timeout)
   }
 
-  stopTimer = () => {
-    if (!this.timer) return
+  stop_timer = () => {
+    if(!this.timer) return
 
     clearTimeout(this.timer)
   }
 
   hide = () => {
-    this.stopTimer()
+    this.stop_timer()
     this.props.onHide()
     this.setState({ status: 'exiting' }, () => {
-      nextFrame(() => this.setState({ status: 'exited' }))
+      next_frame(() => this.setState({ status: 'exited' }))
     })
   }
 
-  handleTransitionEnd = () => {
+  handle_transition_end = () => {
     this.props.onRemove()
   }
 
   componentDidMount() {
-    nextFrame(() => this.setState({ status: 'entered' }))
-    this.startTimer()
+    next_frame(() => this.setState({ status: 'entered' }))
+    this.start_timer()
   }
 
   render() {
-    const { toastProps, component: Component, position } = this.props
+    const { toastProps: toast_props, component: Component, position } = this.props
     const { status } = this.state
-    const rootClassName = classnames(
+    const root_classname = classnames(
       s['toast-container'],
       status === 'entering' && s['toast-container--entering'],
       status === 'entered' && s['toast-container--entered'],
@@ -56,18 +56,18 @@ class ToastContainer extends React.PureComponent<T.ToastContainerProps, T.ToastC
     )
     const attributes: React.HTMLProps<HTMLDivElement> = {}
 
-    if (status === 'entered') {
-      attributes.onMouseEnter = this.stopTimer
-      attributes.onMouseLeave = this.startTimer
+    if(status === 'entered') {
+      attributes.onMouseEnter = this.stop_timer
+      attributes.onMouseLeave = this.start_timer
     }
 
-    if (status === 'exited') {
-      attributes.onTransitionEnd = this.handleTransitionEnd
+    if(status === 'exited') {
+      attributes.onTransitionEnd = this.handle_transition_end
     }
 
     return (
-      <div {...attributes} className={rootClassName}>
-        <Component {...toastProps} />
+      <div {...attributes} className={root_classname}>
+        <Component {...toast_props} />
       </div>
     )
   }
