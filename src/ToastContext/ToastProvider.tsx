@@ -28,7 +28,7 @@ export class ToastProvider extends React.PureComponent<T.ToastProviderProps, T.T
     this.setState({ toasts: [...toasts, toast] })
   }
 
-  show = (toast: object) => {
+  show = (toast: T.ReactProps) => {
     const { toasts } = this.state
 
     ToastProvider.queue.push({ props: toast, id: id() })
