@@ -1,28 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { ToastProvider, withToast } from '../dist';
-import './css/styles.css';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { ToastProvider, withToast } from '../dist'
+import './css/styles.css'
 
 class TestButton extends React.Component {
   render() {
-    const { show, hide } = this.props.toast;
+    const { show, hide } = this.props.toast
     const toastProps = {
       text: 'Message sent',
       actionText: 'Undo',
       ariaLabel: 'Message sent, click to undo',
       onActionClick: hide,
-    };
+    }
 
     return (
       <button className="button" onClick={() => show(toastProps)}>
         Add toast to queue
       </button>
-    );
+    )
   }
 }
 
 const code = () => `
-  import { withToast } from 'react-awesome-toasts';
+  import { withToast } from 'react-awesome-toasts'
 
   const ToastButton = ({ toast }) => {
     const toastProps = {
@@ -30,19 +30,19 @@ const code = () => `
       actionText: 'Undo',
       ariaLabel: 'Message sent, click to undo',
       onActionClick: toast.hide,
-    };
+    }
 
     return (
       <Button ${'onClick={() => toast.show(toastProps)}'}>
         Add toast to queue
       </Button>
-    );
+    )
   }
 
-  export default withToast(ToastButton);
-`;
+  export default withToast(ToastButton)
+`
 
-const ToastButton = withToast(TestButton);
+const ToastButton = withToast(TestButton)
 
 class App extends React.PureComponent {
   render() {
@@ -135,8 +135,8 @@ class App extends React.PureComponent {
           </div>
         </div>
       </ToastProvider>
-    );
+    )
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'))

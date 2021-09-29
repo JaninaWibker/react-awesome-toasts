@@ -1,3 +1,3 @@
-const config = require('../webpack.config');
+const config = require('../webpack.config')
 
-module.exports = Object.assign({}, config, { externals: [] });
+module.exports = Object.assign({}, config, { externals: [] })

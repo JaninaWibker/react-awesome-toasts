@@ -24,7 +24,7 @@ npm install react-awesome-toasts
 Wrap your app with `ToastProvider`:
 
 ```
-import { ToastProvider } from 'react-awesome-toasts';
+import { ToastProvider } from 'react-awesome-toasts'
 
 const App = () => {
     return (
@@ -40,7 +40,7 @@ Add toast methods to your component with one of the following methods:
 *With High Order Component:*
  
 ```
-import { withToast } from 'react-awesome-toasts';
+import { withToast } from 'react-awesome-toasts'
 
 const ToastButton = ({ toast }) => {
     const toastProps = {
@@ -48,25 +48,25 @@ const ToastButton = ({ toast }) => {
         actionText: 'Undo',
         ariaLabel: 'Message sent, click to undo',
         onActionClick: toast.hide,
-    };
+    }
     
-    return <Button onClick={() => toast.show(toastProps)}>Show toast</Button>;
+    return <Button onClick={() => toast.show(toastProps)}>Show toast</Button>
 }
 
-export default withToast(ToastButton);
+export default withToast(ToastButton)
 ```
 
 *With ToastConsumer:*
 
 
 ```
-import { ToastConsumer } from 'react-awesome-toasts';
+import { ToastConsumer } from 'react-awesome-toasts'
 
 const toastProps = {
     text: 'Message sent',
     actionText: 'Undo',
     ariaLabel: 'Message sent, click to undo',
-};
+}
 
 <ToastConsumer>
     {

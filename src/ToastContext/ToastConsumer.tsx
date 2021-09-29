@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { ContextConsumer } from './ToastProvider';
-import * as T from './ToastContext.types';
+import * as React from 'react'
+import { ContextConsumer } from './ToastProvider'
+import * as T from './ToastContext.types'
 
 class ToastConsumer extends React.PureComponent<T.ToastConsumerProps> {
   render() {
@@ -8,8 +8,8 @@ class ToastConsumer extends React.PureComponent<T.ToastConsumerProps> {
       <ContextConsumer>
         { (context: T.ToastContext) => this.props.children(context) }
       </ContextConsumer>
-    );
+    )
   }
 }
 
-export default ToastConsumer;
+export default ToastConsumer

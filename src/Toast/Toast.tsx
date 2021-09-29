@@ -1,53 +1,53 @@
-import React from 'react';
-import classnames from '../utilities/classnames';
-import * as T from './Toast.types';
-import s from './Toast.css';
+import React from 'react'
+import classnames from '../utilities/classnames'
+import * as T from './Toast.types'
+import s from './Toast.css'
 
 class Toast extends React.PureComponent<T.Props> {
-  actionRef = React.createRef<HTMLButtonElement>();
-  previousFocus: HTMLElement | null;
+  actionRef = React.createRef<HTMLButtonElement>()
+  previousFocus: HTMLElement | null
 
   handleActionClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const { onActionClick } = this.props;
+    const { onActionClick } = this.props
 
-    if (onActionClick) onActionClick(e);
-  };
+    if (onActionClick) onActionClick(e)
+  }
 
   handleActionBlur = () => {
-    this.restoreFocus();
-  };
+    this.restoreFocus()
+  }
 
   restoreFocus = () => {
-    if (document.activeElement !== this.actionRef.current) return;
+    if (document.activeElement !== this.actionRef.current) return
 
     if (this.previousFocus && this.previousFocus.focus) {
-      const scrollPosition = window.pageYOffset;
-      this.previousFocus.focus();
-      window.scrollTo({ top: scrollPosition });
+      const scrollPosition = window.pageYOffset
+      this.previousFocus.focus()
+      window.scrollTo({ top: scrollPosition })
     }
 
-    this.previousFocus = null;
-  };
+    this.previousFocus = null
+  }
 
   componentDidMount() {
-    const elButton = this.actionRef.current;
+    const elButton = this.actionRef.current
 
-    if (!elButton) return;
+    if (!elButton) return
 
     if (document.activeElement instanceof HTMLElement) {
-      this.previousFocus = document.activeElement;
+      this.previousFocus = document.activeElement
     }
 
-    elButton.focus();
+    elButton.focus()
   }
 
   componentWillUnmount() {
-    this.restoreFocus();
+    this.restoreFocus()
   }
 
   render() {
-    const { text, actionText, ariaLabel, variant } = this.props;
-    const rootClassNames = classnames(s['root'], variant && s[`root--${variant}`]);
+    const { text, actionText, ariaLabel, variant } = this.props
+    const rootClassNames = classnames(s['root'], variant && s[`root--${variant}`])
 
     return (
       <div className={rootClassNames}>
@@ -66,8 +66,8 @@ class Toast extends React.PureComponent<T.Props> {
           )
         }
       </div>
-    );
+    )
   }
 }
 
-export default Toast;
+export default Toast

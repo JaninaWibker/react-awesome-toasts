@@ -1,9 +1,9 @@
-import { configure } from '@storybook/react';
+import { configure } from '@storybook/react'
 
-const req = require.context('../stories', true, /\.story\.tsx$/);
+const req = require.context('../stories', true, /\.story\.tsx$/)
 
 function loadStories() {
-  req.keys().forEach((filename) => req(filename));
+  req.keys().forEach((filename) => req(filename))
 }
 
-configure(loadStories, module);
+configure(loadStories, module)

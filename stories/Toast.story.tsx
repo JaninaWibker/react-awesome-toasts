@@ -1,30 +1,30 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { ToastProvider, ToastConsumer, withToast } from '../src';
-import Toast from '../src/Toast';
-import * as T from '../src/ToastContext/ToastContext.types';
+import React from 'react'
+import { storiesOf } from '@storybook/react'
+import { ToastProvider, ToastConsumer, withToast } from '../src'
+import Toast from '../src/Toast'
+import * as T from '../src/ToastContext/ToastContext.types'
 
 interface Props {
-  toast: T.ToastContext;
+  toast: T.ToastContext
 }
 
 const toastProps = {
   text: 'Message deleted',
   ariaLabel: 'Message deleted, click to undo',
   actionText: 'Undo',
-};
+}
 
 class TestButton extends React.Component<Props> {
   handleClick = () => {
-    this.props.toast.show({ ...toastProps, onActionClick: this.props.toast.hide });
-  };
+    this.props.toast.show({ ...toastProps, onActionClick: this.props.toast.hide })
+  }
 
   render() {
     return <button onClick={this.handleClick}>Show toast</button>
   }
 }
 
-const ToastButton = withToast(TestButton);
+const ToastButton = withToast(TestButton)
 
 const CustomToast = (props: any) => <div style={{ background: 'yellow', padding: 16 }}>{ props.text }</div>
 
@@ -82,4 +82,4 @@ storiesOf('Toast', module)
         }
       </ToastConsumer>
     </ToastProvider>
-  ));
+  ))
