@@ -34,7 +34,7 @@ storiesOf('Toast', module)
     <ToastProvider component={Toast}>
       <ToastConsumer>
         {dispatch => (
-          <button onClick={() => dispatch({ type: 'show', payload: { ...toast_props, on_action_click: id => dispatch({ type: 'hide', payload: id }) } })}>
+          <button onClick={() => dispatch({ type: 'show', payload: { ...toast_props, on_action_click: id => dispatch({ type: 'remove', payload: id }) } })}>
             Show toast
           </button>
         )}
@@ -55,7 +55,7 @@ storiesOf('Toast', module)
     <ToastProvider component={Toast}>
       <ToastConsumer>
         {dispatch => (
-          <button onClick={() => dispatch({ type: 'show', payload: {...toast_props, on_action_click: id => dispatch({ type: 'hide', payload: id }), variant: 'error' } })}>
+          <button onClick={() => dispatch({ type: 'show', payload: {...toast_props, on_action_click: id => dispatch({ type: 'remove', payload: id }), variant: 'error' } })}>
             Show toast
           </button>
         )}
@@ -66,7 +66,7 @@ storiesOf('Toast', module)
     <ToastProvider component={CustomToast} position="top-center">
       <ToastConsumer>
         {dispatch => (
-          <button onClick={() => dispatch({ type: 'show', payload: {...toast_props, on_action_click: id => dispatch({ type: 'hide', payload: id }), variant: 'error' } })}>
+          <button onClick={() => dispatch({ type: 'show', payload: {...toast_props, on_action_click: id => dispatch({ type: 'remove', payload: id }), variant: 'error' } })}>
             Show toast
           </button>
         )}

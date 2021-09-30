@@ -8,11 +8,14 @@ export type GenericToast<T> = {
   props: T
 }
 
-export type GenericToastContext<T> = React.Dispatch<{
-  type: 'hide', payload: string
-} | {
-  type: 'show', payload: T
-}>
+export type HideAction = { type: 'hide', payload: string }
+export type RemoveAction = { type: 'remove', payload: string }
+export type RemoveAndQueueAction = { type: 'remove-and-queue', payload: string }
+export type ShowAction<T> = { type: 'show', payload: T }
+
+export type Action<T> = HideAction | RemoveAction | RemoveAndQueueAction | ShowAction<T>
+
+export type GenericToastContext<T> = React.Dispatch<Action<T>>
 
 export type GenericWithToastComponent<T> = React.ComponentClass<{ toast: ToastContext } & T>
 

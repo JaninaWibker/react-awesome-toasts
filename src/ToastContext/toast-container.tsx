@@ -1,7 +1,7 @@
 import React from 'react'
 import classnames from '../utilities/classnames'
 import next_frame from '../utilities/next-frame'
-import type { GenericToast, ToastPosition} from '../types/toast-context'
+import type { GenericToast, GenericToastContext, ToastPosition } from '../types/toast-context'
 import s from '../styles/toast-container.css'
 
 
@@ -10,7 +10,7 @@ type ToastContainerState = {
 }
 
 type ToastContainerProps<T>= {
-  dispatch: React.Dispatch<{ type: 'hide', payload: string } | { type: 'show', payload: T }>
+  dispatch: GenericToastContext<T>,
   toast: GenericToast<T>,
   timeout: number,
   position: ToastPosition,
@@ -43,7 +43,7 @@ class ToastContainer<T> extends React.PureComponent<ToastContainerProps<T>, Toas
   }
 
   handle_transition_end = () => {
-    this.props.dispatch({ type: 'hide', payload: this.props.toast.id })
+    this.props.dispatch({ type: 'remove', payload: this.props.toast.id })
   }
 
   componentDidMount() {
