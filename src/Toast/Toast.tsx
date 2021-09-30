@@ -51,8 +51,8 @@ class Toast extends React.PureComponent<Props & { id: string }> {
 
     return (
       <div className={root_classnames}>
-        <span className={s['alert']} role="alert" aria-label={aria_label || text} />
-        <span className={s['text']}>{ text }</span>
+        <span className={s['alert']} role="alert" aria-label={aria_label || (text as string /* if aria_label is undefined, text must be a string */)} />
+        <span className={s['text']}>{text}</span>
         {action_text && (
           <button
             onClick={this.handle_action_click}
