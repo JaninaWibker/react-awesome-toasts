@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { ToastProvider, ToastConsumer, withToast } from '../src'
+import { ToastProvider, ToastConsumer, with_toast } from '../src'
 import Toast from '../src/Toast'
 import type { ToastContext } from '../src/types/toast-context'
 
@@ -20,7 +20,7 @@ class TestButton extends React.Component<{ dispatch: ToastContext }> {
   }
 }
 
-const ToastButton = withToast(TestButton)
+const ToastButton = with_toast(TestButton)
 
 const CustomToast = (props: any) => <div style={{ background: 'yellow', padding: 16 }}>{ props.text }</div>
 
