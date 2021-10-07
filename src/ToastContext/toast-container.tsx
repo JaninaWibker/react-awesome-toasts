@@ -15,6 +15,7 @@ type ToastContainerProps<T>= {
   timeout: number,
   position: ToastPosition,
   component: React.ComponentType<T & { id: string }>
+  skip_animation: boolean,
 }
 
 class ToastContainer<T> extends React.PureComponent<ToastContainerProps<T>, ToastContainerState> {
@@ -36,6 +37,12 @@ class ToastContainer<T> extends React.PureComponent<ToastContainerProps<T>, Toas
 
   hide = () => {
     this.stop_timer()
+
+    if(this.props.skip_animation) {
+      this.setState({ status: 'exited' }, () => this.props.dispatch({ type: 'remove-and-queue', payload: this.props.toast.id }))
+      return
+    }
+
     this.props.dispatch({ type: 'hide', payload: this.props.toast.id })
     this.setState({ status: 'exiting' }, () => {
       next_frame(() => this.setState({ status: 'exited' }))
@@ -43,6 +50,10 @@ class ToastContainer<T> extends React.PureComponent<ToastContainerProps<T>, Toas
   }
 
   handle_transition_end = () => {
+    if(this.props.skip_animation) {
+      return
+    }
+
     this.props.dispatch({ type: 'remove', payload: this.props.toast.id })
   }
 

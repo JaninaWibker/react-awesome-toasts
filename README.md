@@ -156,8 +156,7 @@ Default presentational `Toast` component provides accessibility features:
 
 ### Roadmap
 
-<!-- TODO: tackle some of these issues (no hide animation, custom container class) -->
+<!-- TODO: tackle some of these issues (custom container class) -->
 - Improve accessibility for focused toast actions
 - Check colors AA accessibility level
-- Let toasts hide without animation
 - Custom container classnames
