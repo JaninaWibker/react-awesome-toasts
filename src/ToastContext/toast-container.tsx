@@ -16,6 +16,7 @@ type ToastContainerProps<T>= {
   position: ToastPosition,
   component: React.ComponentType<T & { id: string }>
   skip_animation: boolean,
+  container_classname: string | undefined
 }
 
 class ToastContainer<T> extends React.PureComponent<ToastContainerProps<T>, ToastContainerState> {
@@ -63,7 +64,7 @@ class ToastContainer<T> extends React.PureComponent<ToastContainerProps<T>, Toas
   }
 
   render() {
-    const { toast, position, component: Component } = this.props
+    const { toast, position, component: Component, container_classname } = this.props
     const { status } = this.state
     
     const root_classname = classnames(
@@ -73,6 +74,7 @@ class ToastContainer<T> extends React.PureComponent<ToastContainerProps<T>, Toas
       status === 'exiting' && s['toast-container--exiting'],
       status === 'exited' && s['toast-container--exited'],
       position && s[`toast-container--${position}`],
+      container_classname
     )
 
     const attributes: React.HTMLProps<HTMLDivElement> = {}

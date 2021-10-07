@@ -11,6 +11,7 @@ type ToastProviderProps<T> = {
   children: React.ReactNode,
   component?: React.ComponentType<T & { id: string }>,
   skip_animation?: boolean,
+  container_classname?: string
 }
 
 const { Consumer, Provider } = React.createContext({})
@@ -22,6 +23,7 @@ const ToastProvider = <T extends any = Toast['props']>(unmerged_props: ToastProv
     position: 'bottom-left',
     component: ToastComponent,
     skip_animation: false,
+    container_classname: undefined
   }, unmerged_props)
 
   const [state, dispatch] = React.useReducer(reducer as Reducer<T>, { queue: [], toasts: [] } as State<T>, () => ({ queue: [], toasts: [] } as State<T>))
@@ -39,6 +41,7 @@ const ToastProvider = <T extends any = Toast['props']>(unmerged_props: ToastProv
           timeout={props.timeout}
           position={props.position}
           skip_animation={props.skip_animation}
+          container_classname={props.container_classname}
         />
       ))}
     </Provider>

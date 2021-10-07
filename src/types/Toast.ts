@@ -4,6 +4,7 @@ export type Props = {
   /**
    * A slight variation of the display style of the toast.
    * This adds a css classname to the element, but is however restricted to values specified in the `toast.css`-file of this project.
+   * At the moment only `"error"` is included in this file, for custom things use the `classname`-property.
    */
    variant?: string,
    /**
@@ -14,6 +15,10 @@ export type Props = {
     * The action to be taken when clicking the action button.
     */
    on_action_click?: (id: string, event: MouseEvent<HTMLButtonElement>) => any,
+   /**
+    * A string added to the classname DOM property of the toast element.
+    */
+   classname?: string
 } & ({
   /**
    * Text to display in the toast, must be either a string or an array of strings or JSX elements (mixing both is explicitely allowed)

@@ -46,8 +46,8 @@ class Toast extends React.PureComponent<Props & { id: string }> {
   }
 
   render() {
-    const { text, action_text, aria_label, variant } = this.props
-    const root_classnames = classnames(s['root'], variant && s[`root--${variant}`])
+    const { text, action_text, aria_label, variant, classname } = this.props
+    const root_classnames = classnames(s['root'], variant && s[`root--${variant}`], classname)
 
     return (
       <div className={root_classnames}>
