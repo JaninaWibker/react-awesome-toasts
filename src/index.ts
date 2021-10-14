@@ -33,7 +33,7 @@ export const with_toast        = withToastImport
 export const show_simple_toast = show_simple_toast_import
 export const show_full_toast   = show_full_toast_import
 export const show_toast        = show_toast_import
-export const close_taost       = close_toast_import
+export const close_toast       = close_toast_import
 
 export type HideAction                   = HideActionImport
 export type RemoveAction                 = RemoveActionImport

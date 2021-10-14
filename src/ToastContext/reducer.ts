@@ -1,7 +1,8 @@
 import id from '../utilities/id'
 import type { GenericToast, Action } from '../types/toast-context'
 
-const DO_LOGGING = true
+// * enable this for debugging
+const DO_LOGGING = false
 
 export type State<T> = { queue: GenericToast<T>[], toasts: GenericToast<T>[] }
 

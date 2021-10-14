@@ -1,9 +1,11 @@
 # React Awesome Toasts
 
-Easily customizable React notification system that manages its queue for you. 
+Easily customizable React notification system that manages its queue for you.
 
 <!-- TODO: create own demo page -->
-https://jannikwibker.github.io/react-awesome-toasts/
+<p align="center">Check out the <a href="https://jannikwibker.github.io/react-awesome-toasts/">demo page</a> - Fork of <a href="https://github.com/blvdmitry/react-awesome-toasts">blvdmitry/react-awesome-toasts</a></p>
+
+<img src="./demo-image.png" alt="Demo image with 2 toasts being shown" align="right" width="336px">
 
 - 🎙 Screen reader accessibility
 - 🔧 Server side rendering support
@@ -16,17 +18,16 @@ https://jannikwibker.github.io/react-awesome-toasts/
 
 Install the package:
 
-<!-- TODO: this will install the wrong thing currently -->
 ```sh
-npm install react-awesome-toasts
+npm install @jannnik/react-awesome-toasts
 // or
-yarn add react-awesome-toasts
+yarn add @jannnik/react-awesome-toasts
 ```
 
 Wrap your app with `ToastProvider`:
 
 ```tsx
-import { ToastProvider } from 'react-awesome-toasts'
+import { ToastProvider } from '@jannnik/react-awesome-toasts'
 
 const App = () => (
   <ToastProvider>
@@ -47,7 +48,7 @@ You can either use the `with_toast` decorator or a `ToastConsumer` to get access
 *With High Order Component and dispatch function:*
  
 ```tsx
-import { with_toast } from 'react-awesome-toasts'
+import { with_toast } from '@jannnik/react-awesome-toasts'
 
 const ButtonWithToast = ({ dispatch }) => {
   const toast_props = {
@@ -66,8 +67,8 @@ export default with_toast(ButtonWithToast)
 *With High Order Component and helper function:*
  
 ```tsx
-import { with_toast } from 'react-awesome-toasts'
-import { show_toast, close_toast } from 'react-awesome-toasts'
+import { with_toast } from '@jannnik/react-awesome-toasts'
+import { show_toast, close_toast } from '@jannnik/react-awesome-toasts'
 
 const ButtonWithToast = ({ dispatch }) => {
   const toast_props = {
@@ -87,8 +88,8 @@ export default with_toast(ButtonWithToast)
 *With ToastConsumer:*
 
 ```tsx
-import { ToastConsumer } from 'react-awesome-toasts'
-import { show_toast, close_toast } from 'react-awesome-toasts'
+import { ToastConsumer } from '@jannnik/react-awesome-toasts'
+import { show_toast, close_toast } from '@jannnik/react-awesome-toasts'
 
 const toast_props = {
   text: 'Message sent',
@@ -191,13 +192,14 @@ const close_toast: (dispatch: ToastContext) => (id: string) => void
 
 Given a dispatch function (`ToastContext`) and a toast id the specified toast is removed.
 
+
 ## Accessibility
 
 Default presentational `Toast` component provides accessibility features:
 
 - When toast is opened, action button gets focused if its present
 - When toast is hidden, previous focus is restored
-- When toast is shown, screen reader reads its message or `aria_label` value. Since action button gets focused automatically - it's nice to have an aria-label that mentions it, e.g. `Item deleted, click to undo.  
+- When toast is shown, screen reader reads its message or `aria_label` value. Since action button gets focused automatically - it's nice to have an aria-label that mentions it, e.g. `"Item deleted, click to undo."`
 
 
 ## Roadmap

@@ -1,3 +1,6 @@
+## 1.0.0
+- Complete rewrite
+
 ## 0.0.9
 - Server side rendering support
 

@@ -1,12 +1,15 @@
 {
-  "name": "react-awesome-toasts",
-  "version": "0.0.9",
-  "description": "Higly customisable React toast notifications with automanaged queue",
-  "author": "Dmitry Belyaev (https://blvdmitry.github.io)",
+  "name": "@jannnik/react-awesome-toasts",
+  "version": "1.0.0",
+  "description": "Higly customizable React toast notifications (fork of https://github.com/blvdmitry/react-awesome-toasts)",
+  "contributors": [
+    "Dmitry Belyaev (https://blvdmitry.github.io)",
+    "Jannik Wibker (https://jannikwibker.dev)"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/blvdmitry/react-awesome-toasts.git"
+    "url": "https://github.com/JannikWibker/react-awesome-toasts.git"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
