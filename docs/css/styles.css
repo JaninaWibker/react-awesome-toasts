@@ -1,218 +1,218 @@
 body {
-    margin: 0;
-    font-family: "Heebo", Arial, sans-serif;
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 400;
-    color: #333;
+  margin: 0;
+  font-family: "Heebo", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #333;
 }
 
 h1 {
-    font-weight: 900;
-    font-size: 52px;
-    line-height: 60px;
-    margin: 0;
+  font-weight: 900;
+  font-size: 52px;
+  line-height: 60px;
+  margin: 0;
 }
 
 @media (max-width: 575px) {
-    h1 {
-        font-size: 40px;
-        line-height: 52px;
-    }
+  h1 {
+    font-size: 40px;
+    line-height: 52px;
+  }
 }
 
 .wrapper {
-    max-width: 1000px;
-    width: 100%;
-    margin: 0 auto;
-    position: relative;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
 }
 
 .section {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    height: 100vh;
-    box-sizing: border-box;
-    min-height: 640px;
-    position: relative;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  height: 100vh;
+  box-sizing: border-box;
+  min-height: 700px;
+  position: relative;
 }
 
 .section--features {
-    padding: 40px 20px;
+  padding: 40px 20px;
 }
 
 @media (max-width: 575px) {
-    .section--features {
-        height: auto;
-    }
+  .section--features {
+    height: auto;
+  }
 }
 
 .section__header {
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  position: absolute;
 }
 
 .section__header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .section__footer {
-    position: absolute;
-    bottom: 20px;
-    text-align: center;
-    left: 0;
-    right: 0;
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  left: 0;
+  right: 0;
 }
 
 .section__footer,
 .section__footer a {
-    color: #b7b7b7;
-    text-decoration: none;
-    transition: color 0.15s ease-in-out;
+  color: #b7b7b7;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
 }
 
 .section__footer a:hover {
-    color: #333;
+  color: #333;
 }
 
 .github {
-    opacity: 0.48;
-    transition: opacity 0.2s ease-in-out;
+  opacity: 0.48;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .github:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .github svg {
-    display: block;
+  display: block;
 }
 
 .logo {
-    text-decoration: none;
-    font-size: 20px;
-    line-height: 28px;
-    color: #333;
-    opacity: 0.68;
-    transition: opacity 0.15s ease-in-out;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 28px;
+  color: #333;
+  opacity: 0.68;
+  transition: opacity 0.15s ease-in-out;
 }
 
 .logo:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .hero {
-    text-align: center;
+  text-align: center;
 }
 
 .hero__button {
-    margin: 40px 0;
+  margin: 40px 0;
 }
 
 .hero__code {
-    width: 100%;
-    max-width: 640px;
-    margin: 0 auto;
-    position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
 }
 
 .hero__code:after {
-    content: '';
-    position: absolute;
-    background: linear-gradient(to top right,hsla(0,0%,100%,0) 20%,hsla(0,0%,100%,.5) 70%,#fff);
-    opacity: .2;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    pointer-events: none;
+  content: '';
+  position: absolute;
+  background: linear-gradient(to top right,hsla(0,0%,100%,0) 20%,hsla(0,0%,100%,.5) 70%,#fff);
+  opacity: .2;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  pointer-events: none;
 }
 
 .button {
-    white-space: nowrap;
-    display: inline-block;
-    vertical-align: middle;
-    height: 48px;
-    line-height: 40px;
-    padding: 4px 30px;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
-    border-radius: 3px;
-    font-weight: 500;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: transform .15s ease, box-shadow .15s ease, background-color 0.25s ease, opacity 0.15s ease;
-    font-size: 14px;
-    cursor: pointer;
-    background: #6772e5;
-    color: #fff;
-    outline: 0;
-    border: 0;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+  height: 48px;
+  line-height: 40px;
+  padding: 4px 30px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+  border-radius: 3px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform .15s ease, box-shadow .15s ease, background-color 0.25s ease, opacity 0.15s ease;
+  font-size: 14px;
+  cursor: pointer;
+  background: #6772e5;
+  color: #fff;
+  outline: 0;
+  border: 0;
 }
 
 .button:hover {
-    background-color: #6b8ee7;
-    transform: translateY(-1px);
-    box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08);
+  background-color: #6b8ee7;
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08);
 }
 
 .button:active {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 .button:focus {
-    outline: none;
-    opacity: 0.9;
+  outline: none;
+  opacity: 0.9;
 }
 
 .features {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 
 .features:first-child {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .feature {
-    width: 30%;
-    margin-left: 5%;
-    display: inline-block;
-    vertical-align: top;
+  width: 30%;
+  margin-left: 5%;
+  display: inline-block;
+  vertical-align: top;
 }
 
 @media (max-width: 575px) {
-    .feature {
-        width: 100%;
-        margin-left: 0;
-        margin-top: 40px;
-    }
+  .feature {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 40px;
+  }
 
-    .feature:first-child {
-        margin-top: 0;
-    }
+  .feature:first-child {
+    margin-top: 0;
+  }
 }
 
 .feature:first-child {
-    margin-left: 0;
+  margin-left: 0;
 }
 
 .feature__title {
-    font-size: 20px;
-    line-height: 28px;
-    font-weight: 900;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 900;
 }
 
 .feature__text {
-    margin-top: 8px;
-    font-size: 16px;
-    line-height: 24px;
+  margin-top: 8px;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .feature__icon {
-    font-size: 44px;
-    line-height: 52px;
+  font-size: 44px;
+  line-height: 52px;
 }

@@ -1,20 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { ToastProvider, withToast } from '../dist'
+import { ToastProvider, with_toast, show_toast, close_toast } from '../dist'
 import './css/styles.css'
 
 class TestButton extends React.Component {
   render() {
-    const { show, hide } = this.props.toast
-    const toastProps = {
+    const dispatch = this.props.dispatch
+    const toast_props = {
       text: 'Message sent',
-      actionText: 'Undo',
-      ariaLabel: 'Message sent, click to undo',
-      onActionClick: hide,
+      action_text: 'Undo',
+      aria_label: 'Message sent, click to undo',
+      on_action_click: close_toast(dispatch),
     }
 
     return (
-      <button className="button" onClick={() => show(toastProps)}>
+      <button className="button" onClick={() => show_toast(dispatch, toast_props)}>
         Add toast to queue
       </button>
     )
@@ -22,27 +22,27 @@ class TestButton extends React.Component {
 }
 
 const code = () => `
-  import { withToast } from 'react-awesome-toasts'
+  import { with_toast, show_toast, close_toast } from '@jannnik/react-awesome-toasts'
 
-  const ToastButton = ({ toast }) => {
-    const toastProps = {
+  const ToastButton = ({ dispatch }) => {
+    const toast_props = {
       text: 'Message sent',
-      actionText: 'Undo',
-      ariaLabel: 'Message sent, click to undo',
-      onActionClick: toast.hide,
+      action_text: 'Undo',
+      aria_label: 'Message sent, click to undo',
+      on_action_click: close_toast(dispatch),
     }
 
     return (
-      <Button ${'onClick={() => toast.show(toastProps)}'}>
+      <button ${'onClick={() => show_toast(dispatch, toast_props)}'}>
         Add toast to queue
-      </Button>
+      </button>
     )
   }
 
-  export default withToast(ToastButton)
+  export default with_toast(ToastButton)
 `
 
-const ToastButton = withToast(TestButton)
+const ToastButton = with_toast(TestButton)
 
 class App extends React.PureComponent {
   render() {
@@ -52,11 +52,11 @@ class App extends React.PureComponent {
           <div className="section__header">
             <div className="wrapper">
               <div className="section__header-inner">
-                <a href="https://github.com/BananaBobby/react-awesome-toasts" target="_blank" className="logo">
+                <a href="https://github.com/JannikWibker/react-awesome-toasts" target="_blank" className="logo">
                   React Awesome Toasts
                 </a>
 
-                <a className="github" href="https://github.com/BananaBobby/react-awesome-toasts" target="_blank">
+                <a className="github" href="https://github.com/JannikWibker/react-awesome-toasts" target="_blank">
                   <svg height="32" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true">
                     <path
                       fillRule="evenodd"
@@ -70,7 +70,10 @@ class App extends React.PureComponent {
 
           <div className="section__footer">
             <div className="wrapper">
-              Built by <a href="https://bananabobby.github.io" target="_blank">Dmitry Belyaev</a>
+              {'Built by '}
+              <a href="https://blvdmitry.github.io" target="_blank">Dmitry Belyaev</a> (<a href="https://github.com/blvdmitry/react-awesome-toasts" target="_blank">original</a>)
+              {' and '}
+              <a href="https://jannikwibker.dev" target="_blank">Jannik Wibker</a> (<a href="https://github.com/JannikWibker/react-awesome-toasts" target="_blank">fork</a>)
             </div>
           </div>
 
@@ -85,7 +88,7 @@ class App extends React.PureComponent {
               <div className="hero__code">
                 <pre>
                   <code className="language-jsx">
-                    { code() }
+                    {code()}
                   </code>
                 </pre>
               </div>
@@ -129,7 +132,7 @@ class App extends React.PureComponent {
 
               <div className="feature">
                 <div className="feature__icon">🎉</div>
-                <div className="feature__title">Less than 5kb gzipped</div>
+                <div className="feature__title">Just 6kb gzipped</div>
               </div>
             </div>
           </div>
