@@ -52,11 +52,11 @@ class App extends React.PureComponent {
           <div className="section__header">
             <div className="wrapper">
               <div className="section__header-inner">
-                <a href="https://github.com/JannikWibker/react-awesome-toasts" target="_blank" className="logo">
+                <a href="https://github.com/JaninaWibker/react-awesome-toasts" target="_blank" className="logo">
                   React Awesome Toasts
                 </a>
 
-                <a className="github" href="https://github.com/JannikWibker/react-awesome-toasts" target="_blank">
+                <a className="github" href="https://github.com/JaninaWibker/react-awesome-toasts" target="_blank">
                   <svg height="32" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true">
                     <path
                       fillRule="evenodd"
@@ -73,7 +73,7 @@ class App extends React.PureComponent {
               {'Built by '}
               <a href="https://blvdmitry.github.io" target="_blank">Dmitry Belyaev</a> (<a href="https://github.com/blvdmitry/react-awesome-toasts" target="_blank">original</a>)
               {' and '}
-              <a href="https://jannikwibker.dev" target="_blank">Jannik Wibker</a> (<a href="https://github.com/JannikWibker/react-awesome-toasts" target="_blank">fork</a>)
+              <a href="https://janina.lol" target="_blank">Janina Wibker</a> (<a href="https://github.com/JaninaWibker/react-awesome-toasts" target="_blank">fork</a>)
             </div>
           </div>
 

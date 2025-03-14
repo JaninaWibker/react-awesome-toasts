@@ -2,7 +2,7 @@
 
 Easily customizable React notification system that manages its queue for you.
 
-<p align="center">Check out the <a href="https://jannikwibker.github.io/react-awesome-toasts/">demo page</a> - Fork of <a href="https://github.com/blvdmitry/react-awesome-toasts">blvdmitry/react-awesome-toasts</a></p>
+<p align="center">Check out the <a href="https://janinawibker.github.io/react-awesome-toasts/">demo page</a> - Fork of <a href="https://github.com/blvdmitry/react-awesome-toasts">blvdmitry/react-awesome-toasts</a></p>
 
 <img src="./demo-image.png" alt="Demo image with 2 toasts being shown" align="right" width="336px">
 
